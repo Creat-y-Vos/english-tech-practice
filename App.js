@@ -13,7 +13,6 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native';
-import { Flame, MessageCircle, BookOpen, Send } from 'lucide-react-native';
 
 const EnglishTechPracticeApp = () => {
   const [activeTab, setActiveTab] = useState('tracker');
@@ -178,7 +177,7 @@ Always respond as if you're in an actual business meeting.`;
       <View style={styles.streakCard}>
         <Text style={styles.streakLabel}>Current Streak</Text>
         <View style={styles.streakContainer}>
-          <Flame size={40} color="#f97316" />
+          <Text style={styles.streakEmoji}>🔥</Text>
           <Text style={styles.streakNumber}>{streak}</Text>
         </View>
         <Text style={styles.streakSubtitle}>Keep it up! Don't break the chain.</Text>
@@ -317,7 +316,7 @@ Always respond as if you're in an actual business meeting.`;
             {isLoading ? (
               <ActivityIndicator color="#fff" size="small" />
             ) : (
-              <Send size={20} color="#fff" />
+              <Text style={styles.sendButtonText}>📤</Text>
             )}
           </TouchableOpacity>
         </View>
@@ -372,16 +371,16 @@ Always respond as if you're in an actual business meeting.`;
       {/* Tabs */}
       <View style={styles.tabBar}>
         {[
-          { id: 'tracker', icon: '🔥', label: 'Tracker' },
-          { id: 'chat', icon: '💬', label: 'Practice' },
-          { id: 'vocab', icon: '📚', label: 'Vocabulary' },
+          { id: 'tracker', emoji: '🔥', label: 'Tracker' },
+          { id: 'chat', emoji: '💬', label: 'Practice' },
+          { id: 'vocab', emoji: '📚', label: 'Vocabulary' },
         ].map(tab => (
           <TouchableOpacity
             key={tab.id}
             onPress={() => setActiveTab(tab.id)}
             style={[styles.tabButton, activeTab === tab.id && styles.tabButtonActive]}
           >
-            <Text style={styles.tabIcon}>{tab.icon}</Text>
+            <Text style={styles.tabEmoji}>{tab.emoji}</Text>
             <Text
               style={[styles.tabLabel, activeTab === tab.id && styles.tabLabelActive]}
             >
@@ -439,7 +438,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#3b82f6',
     backgroundColor: '#1f2937',
   },
-  tabIcon: {
+  tabEmoji: {
     fontSize: 18,
     marginRight: 8,
   },
@@ -479,6 +478,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 8,
+  },
+  streakEmoji: {
+    fontSize: 40,
   },
   streakNumber: {
     fontSize: 48,
@@ -680,6 +682,9 @@ const styles = StyleSheet.create({
   },
   sendButtonDisabled: {
     backgroundColor: '#6b7280',
+  },
+  sendButtonText: {
+    fontSize: 18,
   },
   addWordCard: {
     backgroundColor: '#1f2937',
